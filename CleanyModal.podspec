@@ -22,7 +22,7 @@ Swift UI Kit to help to present clean and beautiful modal/alert in your iOS apps
                        DESC
 
   s.homepage         = 'https://github.com/loryhuz/CleanyModal'
-  s.screenshots      = 'https://user-images.githubusercontent.com/3198863/38334725-77f10d24-385c-11e8-9e94-89d653628748.png', 'https://user-images.githubusercontent.com/3198863/38334726-780677b8-385c-11e8-9d69-ca5950520252.png', 'https://user-images.githubusercontent.com/3198863/38334727-7820f070-385c-11e8-9aa3-d49bf9262a39.png', 'https://user-images.githubusercontent.com/3198863/44787753-4c670a00-ab98-11e8-869e-a219c82633c0.jpeg'
+  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'loryhuz' => 'lory.huz@gmail.com' }
   s.source           = { :git => 'https://github.com/loryhuz/CleanyModal.git', :tag => s.version.to_s }
@@ -30,7 +30,7 @@ Swift UI Kit to help to present clean and beautiful modal/alert in your iOS apps
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'CleanyModal/Classes/**/*'
+  s.source_files = 'CleanyModal/Classes/**/*.{h,m,swift}'
   s.resources = 'CleanyModal/Classes/*.xib'
   
   # s.resource_bundles = {

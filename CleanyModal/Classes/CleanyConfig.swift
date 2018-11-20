@@ -8,7 +8,6 @@
 import UIKit
 
 public struct CleanyModalBasicData {
-    
     public let title: String?
     public let message: String?
     public let icon: UIImage?

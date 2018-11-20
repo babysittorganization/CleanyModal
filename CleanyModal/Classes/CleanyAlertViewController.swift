@@ -45,7 +45,7 @@ open class CleanyAlertViewController: CleanyModalViewController {
         super.init(nibName: "CleanyAlertViewController", bundle: Bundle(for: CleanyAlertViewController.self))
         
         precondition(
-            data.title != nil || data.message != nil, "NOPE ! Why you would like to show an alert without at least a title OR a message ?!"
+            data.title != nil || data.message != nil, "How the fuck you would like to show an alert without at least a title OR a message ?!"
         )
         
         modalPresentationStyle = .overFullScreen

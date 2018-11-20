@@ -27,28 +27,10 @@ public class CleanyModalTransition: NSObject, UIViewControllerTransitioningDeleg
     }
 }
 
-protocol CleanyModalTransitionInteractorDelegate {
-    func hasCancelledTransition()
-    func hasFinishedTransition()
-}
 
 open class CleanyModalTransitionInteractor: UIPercentDrivenInteractiveTransition {
     open var hasStarted = false
     open var shouldFinish = false
-    
-    var delegate: CleanyModalTransitionInteractorDelegate?
-    
-    open override func cancel() {
-        super.cancel()
-        
-        self.delegate?.hasCancelledTransition()
-    }
-    
-    open override func finish() {
-        super.finish()
-        
-        self.delegate?.hasFinishedTransition()
-    }
 }
 
 open class CleanyModalDismisser: NSObject, UIViewControllerAnimatedTransitioning {
@@ -57,6 +39,7 @@ open class CleanyModalDismisser: NSObject, UIViewControllerAnimatedTransitioning
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        
         guard let sourceViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as? CleanyModalViewController,
             let targetViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
                 preconditionFailure("controller should inherit from CleanyModalViewController class")
@@ -67,13 +50,9 @@ open class CleanyModalDismisser: NSObject, UIViewControllerAnimatedTransitioning
         
         sourceViewController.alertViewCenterY.constant += sourceViewController.alertView.center.y + (sourceViewController.alertView.frame.height / 2)
         
-        let timingFunction = transitionContext.isInteractive ?
-            CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear) :
-            CAMediaTimingFunction(controlPoints: 1, 0, 0, 1)
-        
         CATransaction.begin()
         CATransaction.setAnimationDuration(transitionDuration(using: transitionContext))
-        CATransaction.setAnimationTimingFunction(timingFunction)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(controlPoints: 1, 0, 0, 1))
         UIView.animate(
             withDuration: transitionDuration(using: transitionContext),
             animations: {
@@ -94,7 +73,7 @@ open class CleanyModalPresenter: NSObject, UIViewControllerAnimatedTransitioning
         let animation = CABasicAnimation(keyPath: keyPath)
         animation.toValue = value
         animation.isRemovedOnCompletion = false
-        animation.fillMode = kCAFillModeForwards
+        animation.fillMode = CAMediaTimingFillMode.forwards
         
         return animation
     }
